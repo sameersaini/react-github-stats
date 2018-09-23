@@ -1,16 +1,25 @@
 {
-  "name": "github-stats",
+  "name": "react-github-stats",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
     "react": "^16.5.2",
+    "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "serve": "^10.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "dev": "react-scripts start",
+    "start": "serve -s build",
+    "build": "react-scripts build && rm build/static/js/*.map && rm build/static/css/*.map",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "eslint": "./node_modules/.bin/eslint ./",
+    "eslintfix": "./node_modules/.bin/eslint ./ --fix",
+    "heroku-postbuild": "npm run build"
   }
 }
