@@ -1,31 +1,55 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { fetchUser } from '../actions';
+import DropdownList from 'react-widgets/lib/DropdownList';
+import 'react-widgets/dist/css/react-widgets.css'
+import axios from 'axios';
+import _ from 'lodash';
+
+import { fetchUserDeatils } from '../actions';
 
 class Form extends Component {
+    constructor(props) {
+        super(props);
+        this.handleSearch = this.handleSearch.bind(this);
+        this.state = {
+            options: []
+        }
+    }
+
+    handleSearch(search) {
+        if (!search) {
+            return;
+        }
+        const url = `https://api.github.com/search/users?q=${search}&per_page=1000`;
+        axios.get(url).then((response) => {
+            this.setState({ options: _.map(response.data.items, 'login') });
+        });
+    }
+
     renderField(field) {
         const { touched, error } = field.meta;
-        const className = `form-control ${ touched && error ? 'is-invalid' : ''}`;
         return (
             <div>
-                <field.type
-                    className={className}
+                <DropdownList filter
                     placeholder="Username..."
                     type="text"
                     {...field.input}
+                    data={field.data}
+                    onSearch={e => field.onSearch(e)}
                 />
-                <div className='invalid-tooltip'>{touched && error}</div>
+                <div className='text-danger'>{touched && error}</div>
             </div>
         );
     }
 
     submitForm(values) {
-        this.props.fetchUser(values);
+        this.props.fetchUserDeatils(values);
     }
 
     render() {
         const { handleSubmit } = this.props;
+        const handleSearch = _.debounce(this.handleSearch, 500);
         return (
             <form className="searchUserForm" onSubmit={handleSubmit(this.submitForm.bind(this))}>
                 <div className="form-group row">
@@ -33,8 +57,9 @@ class Form extends Component {
                         <Field
                             name="Search"
                             title="Search"
-                            type="input"
+                            data={this.state.options}
                             component={this.renderField}
+                            onSearch={handleSearch}
                         />
                     </div>
                     <div className="col-md-2">
@@ -58,5 +83,5 @@ export default reduxForm({
     validate,
     form: 'SearchUserForm',
 })(
-    connect(null, { fetchUser })(Form)
+    connect(null, { fetchUserDeatils })(Form)
 );

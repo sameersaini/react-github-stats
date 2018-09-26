@@ -24,12 +24,12 @@ class User extends Component {
                     <table className="table table-bordered" >
                         <thead>
                             <tr>
-                                <th style={{width: '15%'}}>Name</th>
-                                <th style={{width: '25%'}}>Location</th>
-                                <th style={{width: '10%'}}>Profile</th>
-                                <th style={{width: '10%'}}>Photo</th>
-                                <th style={{width: '10%'}}>Repos</th>
-                                <th style={{width: '15%'}}>Profile Created</th>
+                                <th style={{ width: '15%' }}>Name</th>
+                                <th style={{ width: '25%' }}>Location</th>
+                                <th style={{ width: '10%' }}>Profile</th>
+                                <th style={{ width: '10%' }}>Photo</th>
+                                <th style={{ width: '10%' }}>Repos</th>
+                                <th style={{ width: '15%' }}>Profile Created</th>
                             </tr>
                         </thead>
                         <tbody>
