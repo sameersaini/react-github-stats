@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import DropdownList from 'react-widgets/lib/DropdownList';
-import 'react-widgets/dist/css/react-widgets.css'
+import 'react-widgets/dist/css/react-widgets.css';
 import axios from 'axios';
 import _ from 'lodash';
+import format from 'string-template';
+import { SEARCH_USER_URL } from '../actions/urls';
 
 import { fetchUserDeatils } from '../actions';
 
@@ -13,15 +15,15 @@ class Form extends Component {
         super(props);
         this.handleSearch = this.handleSearch.bind(this);
         this.state = {
-            options: []
-        }
+            options: [],
+        };
     }
 
     handleSearch(search) {
         if (!search) {
             return;
         }
-        const url = `https://api.github.com/search/users?q=${search}&per_page=1000`;
+        const url = format(SEARCH_USER_URL, { search });
         axios.get(url).then((response) => {
             this.setState({ options: _.map(response.data.items, 'login') });
         });
