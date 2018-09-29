@@ -8,8 +8,7 @@ import momemt from 'moment';
 class User extends Component {
     notify = msg => toast.error(msg);
 
-    render () {
-        console.log(_.keys(this.props.user));
+    render() {
         const jsx = [];
 
         if (_.has(this.props.user, 'error') && this.props.user.error) {
@@ -39,7 +38,7 @@ class User extends Component {
                                 <td><a href={user.html_url} target="_blank">Click Here</a></td>
                                 <td><img src={user.avatar_url} width="70" height="70"/></td>
                                 <td>{user.public_repos}</td>
-                                <td>{momemt(user.created_at).format("MMMM D, YYYY")}</td>
+                                <td>{momemt(user.created_at).format('MMM D, YYYY')}</td>
                             </tr>
                         </tbody>
                     </table>

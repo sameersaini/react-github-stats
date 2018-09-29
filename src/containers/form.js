@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import DropdownList from 'react-widgets/lib/DropdownList';
 import 'react-widgets/dist/css/react-widgets.css';
-import axios from 'axios';
+import octokit from '@octokit/rest';
 import _ from 'lodash';
-import format from 'string-template';
-import { SEARCH_USER_URL } from '../actions/urls';
 
-import { fetchUserDeatils } from '../actions';
+import { fetchUserDetails } from '../actions';
 
 class Form extends Component {
     constructor(props) {
@@ -23,8 +21,7 @@ class Form extends Component {
         if (!search) {
             return;
         }
-        const url = format(SEARCH_USER_URL, { search });
-        axios.get(url).then((response) => {
+        octokit().search.users({ q: search }).then((response) => {
             this.setState({ options: _.map(response.data.items, 'login') });
         });
     }
@@ -46,7 +43,7 @@ class Form extends Component {
     }
 
     submitForm(values) {
-        this.props.fetchUserDeatils(values);
+        this.props.fetchUserDetails(values);
     }
 
     render() {
@@ -85,5 +82,5 @@ export default reduxForm({
     validate,
     form: 'SearchUserForm',
 })(
-    connect(null, { fetchUserDeatils })(Form)
+    connect(null, { fetchUserDetails })(Form)
 );

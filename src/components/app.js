@@ -8,6 +8,5 @@ export default () => (
     <div>
         <Header />
         <Wrapper/>
-        <Footer />
     </div>
 );

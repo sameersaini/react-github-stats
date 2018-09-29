@@ -12,6 +12,7 @@ class Wrapper extends Component {
                 <Form />
                 <hr />
                 <User />
+                <Stats/>
             </div>
         );
     }

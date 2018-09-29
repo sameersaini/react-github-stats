@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@octokit/rest": "^15.12.1",
+    "ag-grid-community": "^19.0.0",
+    "ag-grid-react": "^19.0.0",
     "axios": "^0.18.0",
     "eslint": "^5.5.0",
     "eslint-config-airbnb-base": "^13.1.0",
