@@ -12,19 +12,19 @@ class Stats extends Component {
         this.state = {
             columnDefs: [
                 {
-                    headerName: 'ID', field: 'id', width: 100, filter: 'agNumberColumnFilter', headerTooltip: 'ID',
-                },
-                {
                     headerName: 'Name', field: 'name', width: 150,
                 },
                 {
-                    headerName: 'Description', field: 'description', width: 150, tooltipField: 'description',
+                    headerName: 'Description', field: 'description', width: 200, tooltipField: 'description',
                 },
                 {
                     headerName: 'Link', field: 'link', width: 100, tooltipField: 'link', suppressSorting: true, suppressFilter: true, suppressResize: true, cellRenderer: params => `<a href='${params.value}' target='_blank'>Click Here</a>`,
                 },
                 {
-                    headerName: 'Size', field: 'size', width: 80, filter: 'agNumberColumnFilter', headerTooltip: 'Size in Bytes',
+                    headerName: 'Stats', field: 'stats', width: 100, tooltipField: 'link', suppressSorting: true, suppressFilter: true, suppressResize: true,
+                },
+                {
+                    headerName: 'Size (Bytes)', field: 'size', width: 80, filter: 'agNumberColumnFilter', headerTooltip: 'Size in Bytes',
                 },
                 {
                     headerName: 'Forks', field: 'forks', width: 80, filter: 'agNumberColumnFilter', headerTooltip: 'Default Branch',
@@ -42,6 +42,7 @@ class Stats extends Component {
                     headerName: 'Updated At', field: 'updatedAt', width: 120, filter: 'agNumberDateFilter', comparator: this.dateComparator.bind(this),
                 },
             ],
+            pageSize: 15,
         };
     }
 
@@ -69,6 +70,9 @@ class Stats extends Component {
                     enableSorting={true}
                     enableFilter={true}
                     enableColResize={true}
+                    animateRows={true}
+                    pagination={true}
+                    paginationPageSize={this.state.pageSize}
                     columnDefs={this.state.columnDefs}
                     rowData={this.props.rowData}>
                 </AgGridReact>
@@ -79,10 +83,10 @@ class Stats extends Component {
 
 function mapStateToProps(state) {
     const rowData = state.userRepos.map(data => ({
-        id: data.id,
         name: data.name,
         description: data.description || '--',
         link: data.html_url,
+        stats: '--',
         size: data.size,
         forks: data.forks_count,
         defaultBranch: data.default_branch,
