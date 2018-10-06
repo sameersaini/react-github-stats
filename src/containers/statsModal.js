@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import octokit from '@octokit/rest';
+import '../../node_modules/@octokit/rest/lib/deprecate';
 import _ from 'lodash';
 import WeeklyStatsGrid from './weeklyStatsGrid';
 

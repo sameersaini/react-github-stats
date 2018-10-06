@@ -40,4 +40,4 @@ export default class buttonRenderer extends Component {
             </div>
         );
     }
-};
+}
