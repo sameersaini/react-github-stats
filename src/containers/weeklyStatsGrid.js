@@ -7,7 +7,6 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 export default class WeeklyStatsGrid extends Component {
     constructor(props) {
         super(props);
-
         this.state = {
             columnDefs: [
                 {
@@ -41,6 +40,12 @@ export default class WeeklyStatsGrid extends Component {
             data: WeeklyStatsGrid.formatData(props.stats),
             pageSize: 52,
         };
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({
+            data: WeeklyStatsGrid.formatData(nextProps.stats),
+        });
     }
 
     static formatData(stats) {
