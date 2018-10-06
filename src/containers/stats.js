@@ -22,7 +22,7 @@ class Stats extends Component {
                     headerName: 'Link', field: 'link', width: 100, tooltipField: 'link', suppressSorting: true, suppressFilter: true, suppressResize: true, cellRenderer: params => `<a href='${params.value}' target='_blank'>Click Here</a>`,
                 },
                 {
-                    headerName: 'Stats', field: 'stats', width: 80, suppressSorting: true, suppressFilter: true, suppressResize: true, cellRenderer: 'buttonRenderer',
+                    headerName: 'Stats', field: 'stats', width: 80, tooltip: () => 'Click to view more detailed Stats', suppressSorting: true, suppressFilter: true, suppressResize: true, cellRenderer: 'buttonRenderer',
                 },
                 {
                     headerName: 'Size (Bytes)', field: 'size', width: 80, filter: 'agNumberColumnFilter', headerTooltip: 'Size in Bytes',

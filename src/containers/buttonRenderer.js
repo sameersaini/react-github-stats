@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Modal from 'react-modal';
 import octokit from '@octokit/rest';
+import _ from 'lodash';
+import WeeklyStatsGrid from './weeklyStatsGrid';
 
 const customStyles = {
     content: {
@@ -10,13 +12,13 @@ const customStyles = {
         bottom: 'auto',
         marginRight: '-50%',
         transform: 'translate(-50%, -50%)',
-        '-webkit-animation-name': 'fadeIn', /* Fade in the background */
-        '-webkit-animation-duration': '0.5s',
-        'animation-name': 'fadeIn',
-        'animation-duration': '0.5s',
-        font: '400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;',
-        'border-radius': '10px',
-        'text-decoration': 'underline',
+        WebkitAnimationName: 'fadeIn', /* Fade in the background */
+        WebkitAnimationDuration: '0.5s',
+        animationName: 'fadeIn',
+        animationDuration: '0.5s',
+        font: '400 12px -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif',
+        borderRadius: '6px',
+        width: '58%',
     },
 };
 
@@ -29,7 +31,7 @@ export default class buttonRenderer extends Component {
             owner: props.value.owner,
             repo: props.value.repo,
             showModal: false,
-            repoStats: {},
+            repoStats: [],
         };
         this.showModal = this.showModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -40,17 +42,17 @@ export default class buttonRenderer extends Component {
     }
 
     showModal() {
-        octokit().repos.getStatsContributors({ owner: this.state.owner, repo: this.state.repo }).then((response) => {
+        octokit().repos.getStatsCommitActivity({ owner: this.state.owner, repo: this.state.repo }).then((response) => {
             if (response.data && response.data[0]) {
                 this.setState({
-                    repoStats: response.data[0],
+                    repoStats: response.data,
                     showModal: true,
                 });
             } else {
                 setTimeout(() => {
-                    octokit().repos.getStatsContributors({ owner: this.state.owner, repo: this.state.repo }).then((response) => {
+                    octokit().repos.getStatsCommitActivity({ owner: this.state.owner, repo: this.state.repo }).then((response) => {
                         this.setState({
-                            repoStats: response.data[0],
+                            repoStats: response.data,
                             showModal: true,
                         });
                     });
@@ -70,10 +72,18 @@ export default class buttonRenderer extends Component {
                     style={customStyles}
                     contentLabel="Example Modal"
                 >
-                    <button onClick={this.closeModal}>close</button>
-                    <p>
-                        total commits: {this.state.repoStats && this.state.repoStats.total ? this.state.repoStats.total : 0 }
-                    </p>
+                    <div>
+                        <div style={{ float: 'right' }}>
+                            <button className="btn btn-sm btn-primary" onClick={this.closeModal}>Close</button>
+                        </div>
+                        <div>
+                            <p style={{ fontSize: 'medium' }}>
+                                Commits (last 52 weeks) : {this.state.repoStats && this.state.repoStats.length > 0 ? _.sum(_.map(this.state.repoStats, 'total')): 0 }
+                            </p>
+                        </div>
+                    </div>
+                    <br />
+                    <WeeklyStatsGrid stats={this.state.repoStats}/>
                 </Modal>
             </div>
         );

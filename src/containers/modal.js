@@ -17,7 +17,6 @@ const customStyles = {
         'animation-duration': '1s',
         font: '400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;',
         'border-radius': '10px',
-        'text-decoration': 'underline',
     },
 };
 

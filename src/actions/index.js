@@ -1,6 +1,5 @@
 import octokit from '@octokit/rest';
 import {
-    FETCH_STATS,
     FETCH_USER,
     FETCH_USER_ERROR,
     FETCH_USER_REPOS,

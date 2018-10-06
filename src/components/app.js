@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './header';
-import Footer from './footer';
+// import Footer from './footer';
 import Wrapper from './wrapper';
 
 
