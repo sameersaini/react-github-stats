@@ -31,11 +31,11 @@ class Form extends Component {
         return (
             <div>
                 <DropdownList filter
-                    placeholder="Username..."
-                    type="text"
-                    {...field.input}
-                    data={field.data}
-                    onSearch={e => field.onSearch(e)}
+                              placeholder="Username..."
+                              type="text"
+                              {...field.input}
+                              data={field.data}
+                              onSearch={e => field.onSearch(e)}
                 />
                 <div className='text-danger'>{touched && error}</div>
             </div>
@@ -51,18 +51,16 @@ class Form extends Component {
         const handleSearch = _.debounce(this.handleSearch, 500);
         return (
             <form className="searchUserForm" onSubmit={handleSubmit(this.submitForm.bind(this))}>
-                <div className="form-group row">
-                    <div className="col-md-4 offset-md-3">
-                        <Field
-                            name="Search"
-                            title="Search"
-                            data={this.state.options}
-                            component={this.renderField}
-                            onSearch={handleSearch}
-                        />
-                    </div>
-                    <div className="col-md-2">
-                        <button type="submit" className="btn btn-success">Search</button>
+                <div className="input-group justify-content-center">
+                    <Field
+                        name="Search"
+                        title="Search"
+                        data={this.state.options}
+                        component={this.renderField}
+                        onSearch={handleSearch}
+                    />
+                    <div className="input-group-append">
+                        <button type="submit" className="btn btn-outline-success">Search</button>
                     </div>
                 </div>
             </form>

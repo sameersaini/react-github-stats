@@ -54,3 +54,14 @@ footer {
 .searchUserForm {
     margin-top: 10px;
 }
+
+.rw-widget-container {
+    border-radius: 0 !important;
+    border-top-left-radius: 4px !important;
+    border-bottom-left-radius: 4px !important;
+}
+
+.rw-widget {
+    width: 300px !important;
+
+}
