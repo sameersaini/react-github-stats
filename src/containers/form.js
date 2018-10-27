@@ -59,7 +59,7 @@ class Form extends Component {
                         component={this.renderField}
                         onSearch={handleSearch}
                     />
-                    <div className="input-group-append">
+                    <div className="input-group-append d-inline-block">
                         <button type="submit" className="btn btn-outline-success">Search</button>
                     </div>
                 </div>
