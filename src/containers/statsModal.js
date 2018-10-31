@@ -68,7 +68,7 @@ export default class StatsModal extends Component {
     }
 
     render() {
-        console.log("rendering")
+        console.log('rendering');
         console.log(this.state);
         return (
             <div>
@@ -85,7 +85,7 @@ export default class StatsModal extends Component {
                         </div>
                         <div>
                             <p style={{ fontSize: 'medium' }}>
-                                Commits (last 52 weeks) : {this.state.repoStats && this.state.repoStats.length > 0 ? _.sum(_.map(this.state.repoStats, 'total')): 0 }
+                                Commits (last 52 weeks) : {this.state.repoStats && this.state.repoStats.length > 0 ? _.sum(_.map(this.state.repoStats, 'total')) : 0 }
                             </p>
                         </div>
                     </div>
@@ -95,4 +95,4 @@ export default class StatsModal extends Component {
             </div>
         );
     }
-};
+}

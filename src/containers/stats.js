@@ -52,7 +52,7 @@ class Stats extends Component {
     }
 
     methodFromParent(cell) {
-        alert("Parent Component Method from " + cell + "!");
+        alert(`Parent Component Method from ${cell}!`);
     }
 
     dateComparator(date1, date2) {

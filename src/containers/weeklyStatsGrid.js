@@ -49,19 +49,17 @@ export default class WeeklyStatsGrid extends Component {
     }
 
     static formatData(stats) {
-        return stats.map((stat, index) => {
-            return {
-                date: moment.unix(stat.week).format('MMM D, YYYY'),
-                sun: stat.days[0],
-                mon: stat.days[1],
-                tue: stat.days[2],
-                wed: stat.days[3],
-                thu: stat.days[4],
-                fri: stat.days[5],
-                sat: stat.days[6],
-                total: stat.total,
-            };
-        });
+        return stats.map((stat, index) => ({
+            date: moment.unix(stat.week).format('MMM D, YYYY'),
+            sun: stat.days[0],
+            mon: stat.days[1],
+            tue: stat.days[2],
+            wed: stat.days[3],
+            thu: stat.days[4],
+            fri: stat.days[5],
+            sat: stat.days[6],
+            total: stat.total,
+        }));
     }
 
     static dateComparator(date1, date2) {

@@ -29,13 +29,13 @@ class Form extends Component {
     renderField(field) {
         const { touched, error } = field.meta;
         return (
-            <div>
+            <div className="col-sm-4 pr-0">
                 <DropdownList filter
-                              placeholder="Username..."
-                              type="text"
-                              {...field.input}
-                              data={field.data}
-                              onSearch={e => field.onSearch(e)}
+                    placeholder="Username..."
+                    type="text"
+                    {...field.input}
+                    data={field.data}
+                    onSearch={e => field.onSearch(e)}
                 />
                 <div className='text-danger'>{touched && error}</div>
             </div>
