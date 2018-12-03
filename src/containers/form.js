@@ -6,18 +6,12 @@ import 'react-widgets/dist/css/react-widgets.css';
 import octokit from '@octokit/rest';
 import _ from 'lodash';
 
-import { fetchUserDetails } from '../actions';
+import fetchUserDetails from '../actions';
 
 class Form extends Component {
-    constructor(props) {
-        super(props);
-        this.handleSearch = this.handleSearch.bind(this);
-        this.state = {
-            options: [],
-        };
-    }
+    state = { options: [] };
 
-    handleSearch(search) {
+    handleSearch = (search) => {
         if (!search) {
             return;
         }
@@ -42,7 +36,7 @@ class Form extends Component {
         );
     }
 
-    submitForm(values) {
+    submitForm = (values) => {
         this.props.fetchUserDetails(values);
     }
 
@@ -50,7 +44,7 @@ class Form extends Component {
         const { handleSubmit } = this.props;
         const handleSearch = _.debounce(this.handleSearch, 500);
         return (
-            <form className="searchUserForm" onSubmit={handleSubmit(this.submitForm.bind(this))}>
+            <form className="searchUserForm" onSubmit={handleSubmit(this.submitForm)}>
                 <div className="input-group justify-content-center">
                     <Field
                         name="Search"

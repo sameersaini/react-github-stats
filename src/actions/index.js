@@ -6,7 +6,7 @@ import {
 } from './types';
 
 
-export function fetchUserDetails(values) {
+const fetchUserDetails = (values) => {
     return async (dispatch) => {
         try {
             const userData = await octokit().users.getForUser({ username: values.Search });
@@ -27,3 +27,5 @@ export function fetchUserDetails(values) {
         }
     };
 }
+
+export default fetchUserDetails

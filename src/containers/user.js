@@ -22,7 +22,7 @@ class User extends Component {
                 <div key="2">
                     <table className="table table-bordered" >
                         <thead>
-                            <tr>
+                            <tr style={{backgroundColor: '#f5f7f7'}}>
                                 <th style={{ width: '15%' }}>Name</th>
                                 <th style={{ width: '25%' }}>Location</th>
                                 <th style={{ width: '10%' }}>Profile</th>
@@ -46,7 +46,7 @@ class User extends Component {
             );
         }
 
-        return (<div>{jsx}</div>);
+        return (<div className="shadow-sm">{jsx}</div>);
     }
 }
 

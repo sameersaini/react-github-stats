@@ -26,17 +26,12 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export default class StatsModal extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            owner: props.owner,
-            repo: props.repo,
-            showModal: props.showModal,
-            repoStats: [],
-        };
-        this.afterOpenModal = this.afterOpenModal.bind(this);
-        this.closeModal = this.closeModal.bind(this);
-    }
+    state = {
+        owner: this.props.owner,
+        repo: this.props.repo,
+        showModal: this.props.showModal,
+        repoStats: [],
+    };
 
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -44,12 +39,12 @@ export default class StatsModal extends Component {
         });
     }
 
-    closeModal() {
+    closeModal = () => {
         this.setState({ showModal: false });
         this.props.hideModal();
     }
 
-    afterOpenModal() {
+    afterOpenModal = () => {
         octokit().repos.getStatsCommitActivity({ owner: this.state.owner, repo: this.state.repo }).then((response) => {
             if (response.data && response.data[0]) {
                 this.setState({
@@ -68,8 +63,6 @@ export default class StatsModal extends Component {
     }
 
     render() {
-        console.log('rendering');
-        console.log(this.state);
         return (
             <div>
                 <Modal

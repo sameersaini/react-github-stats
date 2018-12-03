@@ -8,7 +8,7 @@ import User from '../containers/user';
 class Wrapper extends Component {
     render() {
         return (
-            <div className="container" id="main">
+            <div className="container mt-4" id="main">
                 <Form />
                 <hr />
                 <User />

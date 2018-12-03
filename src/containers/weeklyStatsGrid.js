@@ -5,42 +5,39 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 
 export default class WeeklyStatsGrid extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            columnDefs: [
-                {
-                    headerName: 'Date', field: 'date', width: 120, filter: 'agNumberDateFilter', comparator: WeeklyStatsGrid.dateComparator, sort: 'desc',
-                },
-                {
-                    headerName: 'Sun', field: 'sun', width: 80, filter: 'agNumberColumnFilter',
-                },
-                {
-                    headerName: 'Mon', field: 'mon', width: 80, filter: 'agNumberColumnFilter',
-                },
-                {
-                    headerName: 'Tue', field: 'tue', width: 80, filter: 'agNumberColumnFilter',
-                },
-                {
-                    headerName: 'Wed', field: 'wed', width: 80, filter: 'agNumberColumnFilter',
-                },
-                {
-                    headerName: 'Thur', field: 'thu', width: 80, filter: 'agNumberColumnFilter',
-                },
-                {
-                    headerName: 'Fri', field: 'fri', width: 80, filter: 'agNumberColumnFilter',
-                },
-                {
-                    headerName: 'Sat', field: 'sat', width: 80, filter: 'agNumberDateFilter',
-                },
-                {
-                    headerName: 'Total', field: 'total', width: 105, filter: 'agNumberDateFilter',
-                },
-            ],
-            data: WeeklyStatsGrid.formatData(props.stats),
-            pageSize: 52,
-        };
-    }
+    state = {
+        columnDefs: [
+            {
+                headerName: 'Date', field: 'date', width: 120, filter: 'agNumberDateFilter', comparator: WeeklyStatsGrid.dateComparator, sort: 'desc',
+            },
+            {
+                headerName: 'Sun', field: 'sun', width: 80, filter: 'agNumberColumnFilter',
+            },
+            {
+                headerName: 'Mon', field: 'mon', width: 80, filter: 'agNumberColumnFilter',
+            },
+            {
+                headerName: 'Tue', field: 'tue', width: 80, filter: 'agNumberColumnFilter',
+            },
+            {
+                headerName: 'Wed', field: 'wed', width: 80, filter: 'agNumberColumnFilter',
+            },
+            {
+                headerName: 'Thur', field: 'thu', width: 80, filter: 'agNumberColumnFilter',
+            },
+            {
+                headerName: 'Fri', field: 'fri', width: 80, filter: 'agNumberColumnFilter',
+            },
+            {
+                headerName: 'Sat', field: 'sat', width: 80, filter: 'agNumberDateFilter',
+            },
+            {
+                headerName: 'Total', field: 'total', width: 105, filter: 'agNumberDateFilter',
+            },
+        ],
+        data: WeeklyStatsGrid.formatData(this.props.stats),
+        pageSize: 52,
+    };
 
     componentWillReceiveProps(nextProps) {
         this.setState({

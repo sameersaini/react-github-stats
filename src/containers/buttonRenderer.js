@@ -2,25 +2,20 @@ import React, { Component } from 'react';
 import StatsModal from './statsModal';
 
 export default class buttonRenderer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            owner: props.value.owner,
-            repo: props.value.repo,
-            showModal: false,
-        };
-        this.showModal = this.showModal.bind(this);
-        this.hideModal = this.hideModal.bind(this);
-    }
+    state = {
+        owner: this.props.value.owner,
+        repo: this.props.value.repo,
+        showModal: false,
+    };
 
 
-    showModal() {
+    showModal = () => {
         this.setState({
             showModal: true,
         });
     }
 
-    hideModal() {
+    hideModal = () => {
         this.setState({
             showModal: false,
         });

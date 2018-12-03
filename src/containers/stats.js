@@ -7,49 +7,45 @@ import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import buttonRenderer from './buttonRenderer';
 
 class Stats extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            columnDefs: [
-                {
-                    headerName: 'Name', field: 'name', width: 150,
-                },
-                {
-                    headerName: 'Description', field: 'description', width: 200, tooltipField: 'description',
-                },
-                {
-                    headerName: 'Link', field: 'link', width: 100, tooltipField: 'link', suppressSorting: true, suppressFilter: true, suppressResize: true, cellRenderer: params => `<a href='${params.value}' target='_blank'>Click Here</a>`,
-                },
-                {
-                    headerName: 'Stats', field: 'stats', width: 80, tooltip: () => 'Click to view more detailed Stats', suppressSorting: true, suppressFilter: true, suppressResize: true, cellRenderer: 'buttonRenderer',
-                },
-                {
-                    headerName: 'Size (Bytes)', field: 'size', width: 80, filter: 'agNumberColumnFilter', headerTooltip: 'Size in Bytes',
-                },
-                {
-                    headerName: 'Forks', field: 'forks', width: 80, filter: 'agNumberColumnFilter', headerTooltip: 'Default Branch',
-                },
-                {
-                    headerName: 'Default Branch', field: 'defaultBranch', width: 120,
-                },
-                {
-                    headerName: 'Pushed At', field: 'pushedAt', width: 120, filter: 'agNumberDateFilter', comparator: this.dateComparator.bind(this), sort: 'desc',
-                },
-                {
-                    headerName: 'Created At', field: 'createdAt', width: 120, filter: 'agNumberDateFilter', comparator: this.dateComparator.bind(this),
-                },
-                {
-                    headerName: 'Updated At', field: 'updatedAt', width: 120, filter: 'agNumberDateFilter', comparator: this.dateComparator.bind(this),
-                },
-            ],
-            context: { componentParent: this },
-            frameworkComponents: {
-                buttonRenderer,
+    state = {
+        columnDefs: [
+            {
+                headerName: 'Name', field: 'name', width: 150,
             },
-            pageSize: 15,
-        };
-    }
+            {
+                headerName: 'Description', field: 'description', width: 200, tooltipField: 'description',
+            },
+            {
+                headerName: 'Link', field: 'link', width: 100, tooltipField: 'link', suppressSorting: true, suppressFilter: true, suppressResize: true, cellRenderer: params => `<a href='${params.value}' target='_blank'>Click Here</a>`,
+            },
+            {
+                headerName: 'Stats', field: 'stats', width: 80, tooltip: () => 'Click to view more detailed Stats', suppressSorting: true, suppressFilter: true, suppressResize: true, cellRenderer: 'buttonRenderer',
+            },
+            {
+                headerName: 'Size (Bytes)', field: 'size', width: 80, filter: 'agNumberColumnFilter', headerTooltip: 'Size in Bytes',
+            },
+            {
+                headerName: 'Forks', field: 'forks', width: 80, filter: 'agNumberColumnFilter', headerTooltip: 'Default Branch',
+            },
+            {
+                headerName: 'Default Branch', field: 'defaultBranch', width: 120,
+            },
+            {
+                headerName: 'Pushed At', field: 'pushedAt', width: 120, filter: 'agNumberDateFilter', comparator: this.dateComparator.bind(this), sort: 'desc',
+            },
+            {
+                headerName: 'Created At', field: 'createdAt', width: 120, filter: 'agNumberDateFilter', comparator: this.dateComparator.bind(this),
+            },
+            {
+                headerName: 'Updated At', field: 'updatedAt', width: 120, filter: 'agNumberDateFilter', comparator: this.dateComparator.bind(this),
+            },
+        ],
+        context: { componentParent: this },
+        frameworkComponents: {
+            buttonRenderer,
+        },
+        pageSize: 15,
+    };
 
     methodFromParent(cell) {
         alert(`Parent Component Method from ${cell}!`);
@@ -70,7 +66,7 @@ class Stats extends Component {
         }
         return (
             <div
-                className="ag-theme-balham"
+                className="ag-theme-balham shadow-lg"
                 style={{
                     height: '400px',
                 }}
