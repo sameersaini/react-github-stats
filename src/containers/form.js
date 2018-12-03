@@ -25,7 +25,7 @@ class Form extends Component {
         return (
             <div className="col-sm-4 pr-0">
                 <DropdownList filter
-                    placeholder="Username..."
+                    placeholder="GitHub Username..."
                     type="text"
                     {...field.input}
                     data={field.data}
