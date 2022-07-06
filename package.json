@@ -11,7 +11,7 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "lodash": "^4.17.11",
-    "moment": "^2.22.2",
+    "moment": "^2.29.4",
     "react": "^16.5.2",
     "react-addons-css-transition-group": "^15.6.2",
     "react-dom": "^16.5.2",
